@@ -20,11 +20,11 @@ OPTION(USE_DMUUID "use dmuuid" OFF)
 ModuleImportAll("thirdparty")
 
 IF (WIN32)
-    ExeImport("test" "")
+    ExeImport("test" "dmtest")
 ELSEIF (APPLE)
-    ExeImport("test" "")
+    ExeImport("test" "dmtest")
 ELSE(UNIX)
-    ExeImport("test" "uuid")
+    ExeImport("test" "uuid;dmtest")
 ENDIF(WIN32)
 
 

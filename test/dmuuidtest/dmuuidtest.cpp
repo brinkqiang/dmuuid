@@ -2,13 +2,23 @@
 #include "dmuuid.h"
 #include "dmformat.h"
 
-int main(int argc, char* argv[]) {
+#include "gtest.h"
+#include <map>
+
+TEST(dmuuid, dmuuid) {
     CUUID UUID;
 
-    for (int i = 0; i < 10; i++)
+    std::map<std::string, int> map;
+
+    for (int i = 0; i < 1000000; i++)
     {
         auto id = UUID.generate();
-        fmt::print("index:{} uuid:{}\n", i, id.str());
+        auto& count = map[id.str()];
+        count++;
+        if (count > 1)
+        {
+            ASSERT_TRUE(0);
+        }
     }
-    return 0;
+    fmt::print("Done");
 }
