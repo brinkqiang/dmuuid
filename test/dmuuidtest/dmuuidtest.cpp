@@ -20,5 +20,5 @@ TEST(dmuuid, dmuuid) {
             ASSERT_TRUE(0);
         }
     }
-    fmt::print("Done");
+    fmt::print("Done\n");
 }
