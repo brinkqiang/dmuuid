@@ -94,7 +94,7 @@ macro(InterfaceImport ModuleName ModulePath DependsLib)
 
     target_include_directories(${ModuleName} INTERFACE ${${ModuleName}_INCLUDE_DIR})
 
-    target_link_libraries(${ModuleName} PUBLIC ${DependsLib})
+    target_link_libraries(${ModuleName} INTERFACE ${DependsLib})
 endmacro()
 
 macro(ModuleImport ModuleName ModulePath)
