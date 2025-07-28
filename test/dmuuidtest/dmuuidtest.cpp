@@ -5,7 +5,7 @@
 #include "gtest.h"
 #include <map>
 
-TEST(dmuuid, dmuuid) {
+TEST(dmuuid, dmuuid_100w) {
     CUUID UUID;
 
     std::map<std::string, int> map;
