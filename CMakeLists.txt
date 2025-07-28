@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.21)
 
 PROJECT(dmuuid)
 
@@ -19,28 +19,18 @@ OPTION(USE_DMUUID "use dmuuid" OFF)
 
 ModuleImportAll("thirdparty")
 
-IF (WIN32)
-    ExeImport("test" "dmtest")
-ELSEIF (APPLE)
-    ExeImport("test" "dmtest")
-ELSE(UNIX)
-    ExeImport("test" "uuid;dmtest")
-ENDIF(WIN32)
+if(UNIX)
+    InterfaceImport("dmuuid" "include" "uuid")
+else(UNIX)
+    InterfaceImport("dmuuid" "include" "")
+endif(UNIX)
 
-
-#ADD_CUSTOM_COMMAND(
-#TARGET dmuuidtest
-#PRE_BUILD
-#COMMAND ${CMAKE_COMMAND} -E copy_if_different
-#${CMAKE_CURRENT_SOURCE_DIR}/config/test.csv
-#$<TARGET_FILE_DIR:dmuuidtest>
-#)
-
-#INSTALL(DIRECTORY include/ DESTINATION include)
-#INSTALL(TARGETS dmuuid
-#        RUNTIME DESTINATION bin
-#        LIBRARY DESTINATION lib
-#        ARCHIVE DESTINATION lib)
-
-#SET(DMUUID_LIBS "dmuuid")
-#MARK_AS_ADVANCED(${DMUUID_LIBS})
+if (PROJECT_IS_TOP_LEVEL)
+    IF (WIN32)
+        ExeImport("test" "dmtest")
+    ELSEIF (APPLE)
+        ExeImport("test" "dmtest")
+    ELSE(UNIX)
+        ExeImport("test" "dmtest")
+    ENDIF(WIN32)
+endif ()
