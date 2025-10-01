@@ -10,7 +10,7 @@ TEST(dmuuid, dmuuid_100w) {
 
     std::map<std::string, int> map;
 
-    for (int i = 0; i < 1000000; i++)
+    for (int i = 0; i < 100 * 10000; i++)
     {
         auto id = UUID.generate();
         auto& count = map[id.str()];
